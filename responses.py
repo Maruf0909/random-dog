@@ -1,4 +1,4 @@
-from telegram import Update
+from telegram import Update, ReplyKeyboardMarkup, KeyboardButton
 from telegram.ext import CallbackContext
 
 from dog import dog_photo
@@ -9,9 +9,15 @@ def start(update: Update, context: CallbackContext) -> None:
     # welcome message
     text = f"Hi {update.message.chat.first_name}! I'm a bot that can send random dog photos. \n\n" \
               f"send /dog to get a photo of a dog."
+
+    # create dog button
+    dog_button = KeyboardButton(text='dog')
+
+    # create the keyboard
+    keyboard = ReplyKeyboardMarkup(keyboard=[[dog_button]], resize_keyboard=True, one_time_keyboard=True)
     
     # send the message
-    update.message.reply_text(text)
+    update.message.reply_text(text=text, reply_markup=keyboard)
 
 
 def dog(update: Update, context: CallbackContext) -> None:
