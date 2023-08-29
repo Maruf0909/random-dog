@@ -21,3 +21,9 @@ def dog(update: Update, context: CallbackContext) -> None:
     
     # send the photo
     update.message.reply_photo(photo=photo)
+
+
+def unknown(update: Update, context: CallbackContext) -> None:
+    """Send a message when an unknown command is issued."""
+    # send the message
+    update.message.reply_text(text="Sorry, I didn't understand that command.")
